@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc>
+  <web>ZoneCode</web>
+  <name>ZoneSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>ZoneCode.ZoneClass</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1455714702000</creationDate>
+  <date>1455725829000</date>
+  <contentUpdateDate>1455725829000</contentUpdateDate>
+  <version>1.1</version>
+  <title>$!doc.getValue("title")</title>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+{{html clean="false" wiki="true"}}
+#set($zoneObject = $doc.getObject("ZoneCode.ZoneClass"))
+
+#if($xcontext.action != 'edit' &amp;&amp; $xcontext.action != 'inline')
+  ## View mode
+  $doc.display('content', $zoneObject)
+#else
+  ; $services.localization.render('Zone.sheet.title')
+  : $doc.display('title', 'edit', $zoneObject)
+  ; $services.localization.render('Zone.sheet.content')
+  : $doc.display('content', 'edit', $zoneObject)
+  ; $services.localization.render('Zone.sheet.link')
+  : $doc.display('link', 'edit', $zoneObject)  
+#end
+{{/html}}
+{{/velocity}}</content>
+</xwikidoc>
