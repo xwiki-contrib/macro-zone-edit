@@ -78,6 +78,7 @@
     </property>
   </object>
   <content>#Zones
+Zone.edit.button=Edit
 Zone.readmore=Read more
 Zone.sheet.title=Title :
 Zone.sheet.content=Content :

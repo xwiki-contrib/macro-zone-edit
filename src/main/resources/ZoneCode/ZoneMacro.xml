@@ -138,12 +138,9 @@
       <cache>long</cache>
     </property>
     <property>
-      <code>#xwikicontent > .section_container:nth-child(2){
-    margin-top: 28px;
-}
-.find-out-more {
-    clear: both;
-    text-align: right;
+      <code>/* Style for Colibri Theme */
+.pull-right {
+    float: right;
 }</code>
     </property>
     <property>
@@ -285,22 +282,26 @@
       #set($link = $currDoc.getValue('link', $zoneObject))
       #set($title = $currDoc.getValue('title', $zoneObject))
       #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
-        &lt;div class="AR"&gt;
+        &lt;div class="pull-right buttonwrapper"&gt;
           #set($currDocInlineURL = $currDoc.getURL("inline"))
-          &lt;a href="$!{currDocInlineURL}" class="edit_section modifier" title="Modifier"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;
+          &lt;a href="$!{currDocInlineURL}" class="button" title="$services.localization.render('Zone.edit.button')"&gt;&lt;span&gt;&lt;/span&gt;
+		  &lt;span class="glyphicon glyphicon-pencil"&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
+		  &lt;/a&gt;
         &lt;/div&gt;
       #end
       #if("$!title"!="")
-        &lt;h3&gt;$!title&lt;/h3&gt;
+        &lt;h2&gt;$!title&lt;/h2&gt;
       #end
-      &lt;div&gt;
+	  &lt;div class="clearfix"&gt;&lt;/div&gt;
+      &lt;div class="zone-container"&gt;
 {{/html}}##comment to eliminate unwanted break
   $currDoc.display('content', 'view',$zoneObject)##comment to eliminate unwanted break
 {{html clean="false"}}
       &lt;/div&gt;
       #if("$!link"!="")
-      &lt;div class="find-out-more"&gt;
-        &lt;div class="buttonwrapper"&gt;&lt;a class="button" href="$!{link}" &gt; $services.localization.render('Zone.readmore') &lt;/a&gt; &lt;/div&gt;          
+	  &lt;div class="clearfix"&gt;&lt;/div&gt;
+      &lt;div class="text-right"&gt;
+        &lt;div class="buttonwrapper"&gt;&lt;a class="button secondary" href="$!{link}" &gt; $services.localization.render('Zone.readmore') &lt;/a&gt; &lt;/div&gt;          
       &lt;/div&gt;  
       #end
     #else
