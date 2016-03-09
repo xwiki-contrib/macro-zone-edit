@@ -141,6 +141,28 @@
       <code>/* Style for Colibri Theme */
 .pull-right {
     float: right;
+}
+.section_container .edition-button {
+    display: none;
+}
+.section_container:hover .edition-button {
+    display: block;
+    margin-top: 8px;
+}
+.section_container {
+    border: 1px dashed transparent;
+    transition:1s;
+    -webkit-
+    -moz-transition:1s;
+    -o-transition:1s;
+    -ms-transition:1s;
+}
+.section_container:hover {
+    border: 1px dashed #999;
+    padding: 0 10px;
+}
+.section_container img {
+    max-width: 100%;
 }</code>
     </property>
     <property>
