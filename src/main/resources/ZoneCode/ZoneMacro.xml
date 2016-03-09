@@ -304,7 +304,7 @@
       #set($link = $currDoc.getValue('link', $zoneObject))
       #set($title = $currDoc.getValue('title', $zoneObject))
       #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
-        &lt;div class="pull-right buttonwrapper"&gt;
+        &lt;div class="pull-right buttonwrapper edition-button"&gt;
           #set($currDocInlineURL = $currDoc.getURL("inline"))
           &lt;a href="$!{currDocInlineURL}" class="button" title="$services.localization.render('Zone.edit.button')"&gt;
 	    &lt;span class="glyphicon glyphicon-pencil"&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
