@@ -284,9 +284,9 @@
       #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
         &lt;div class="pull-right buttonwrapper"&gt;
           #set($currDocInlineURL = $currDoc.getURL("inline"))
-          &lt;a href="$!{currDocInlineURL}" class="button" title="$services.localization.render('Zone.edit.button')"&gt;&lt;span&gt;&lt;/span&gt;
-		  &lt;span class="glyphicon glyphicon-pencil"&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
-		  &lt;/a&gt;
+          &lt;a href="$!{currDocInlineURL}" class="button" title="$services.localization.render('Zone.edit.button')"&gt;
+	    &lt;span class="glyphicon glyphicon-pencil"&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
+	  &lt;/a&gt;
         &lt;/div&gt;
       #end
       #if("$!title"!="")
