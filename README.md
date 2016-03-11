@@ -15,7 +15,6 @@ Insert the following macro on the page you want the editable section.
 The document given as parameter must exist.
 You can add a ZoneCode.ZoneClass object and add some content in there.
 If the document does not have the object already, it will be added automatically and you will be able to edit after a refresh of the document from which you called the macro.
-* BE CAREFUL: the existing normal contet will be erased when used with this macro, only the content from the ZoneCode.ZoneClass object will be displayed.
 
 When editing a zone you have the posibility to edit:
 
