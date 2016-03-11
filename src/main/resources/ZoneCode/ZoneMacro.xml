@@ -20,29 +20,31 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc>
+<xwikidoc version="1.1">
   <web>ZoneCode</web>
   <name>ZoneMacro</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
-  <parent>Main.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>
-  <author>xwiki:XWiki.Admin</author>
-  <customClass/>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1455714690000</creationDate>
-  <date>1455781537000</date>
-  <contentUpdateDate>1455730460000</contentUpdateDate>
+  <parent>Main.WebHome</parent>
+  <author>xwiki:XWiki.Admin</author>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <date>1457710916000</date>
+  <contentUpdateDate>1457709711000</contentUpdateDate>
   <version>1.1</version>
   <title/>
-  <defaultTemplate/>
-  <validationScript/>
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
+  <content/>
   <object>
+    <name>ZoneCode.ZoneMacro</name>
+    <number>0</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>fe82154b-a03d-4082-abf3-d73029d320fa</guid>
     <class>
       <name>XWiki.StyleSheetExtension</name>
       <customClass/>
@@ -130,39 +132,38 @@
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
-    <name>ZoneCode.ZoneMacro</name>
-    <number>0</number>
-    <className>XWiki.StyleSheetExtension</className>
-    <guid>fe82154b-a03d-4082-abf3-d73029d320fa</guid>
     <property>
       <cache>long</cache>
     </property>
     <property>
       <code>/* Style for Colibri Theme */
 .pull-right {
-    float: right;
+  float: right;
 }
 .section_container .edition-button {
-    display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+  margin-top: 8px;
 }
 .section_container:hover .edition-button {
-    display: block;
-    margin-top: 8px;
+  visibility: visible;
+  opacity: 1;
 }
 .section_container {
-    border: 1px dashed transparent;
-    transition:1s;
-    -webkit-
-    -moz-transition:1s;
-    -o-transition:1s;
-    -ms-transition:1s;
+  border: 1px dashed transparent;
+  padding: 0 5px;
+  transition:0.5s;
+  -webkit-
+  -moz-transition:0.5s;
+  -o-transition:0.5s;
+  -ms-transition:0.5s;
 }
 .section_container:hover {
-    border: 1px dashed #999;
-    padding: 0 10px;
+  border: 1px dashed #999;
 }
 .section_container img {
-    max-width: 100%;
+  max-width: 100%;
 }</code>
     </property>
     <property>
@@ -179,6 +180,10 @@
     </property>
   </object>
   <object>
+    <name>ZoneCode.ZoneMacro</name>
+    <number>0</number>
+    <className>XWiki.WikiMacroClass</className>
+    <guid>1780fe9f-c103-4307-add1-e64c4653d0ad</guid>
     <class>
       <name>XWiki.WikiMacroClass</name>
       <customClass/>
@@ -288,10 +293,6 @@
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </visibility>
     </class>
-    <name>ZoneCode.ZoneMacro</name>
-    <number>0</number>
-    <className>XWiki.WikiMacroClass</className>
-    <guid>1780fe9f-c103-4307-add1-e64c4653d0ad</guid>
     <property>
       <code>{{velocity}}
 {{html clean="false"}}
@@ -301,14 +302,19 @@
     #set($currDoc = $xwiki.getDocument("$!docToDisplay"))
     #if($currDoc.getObject("ZoneCode.ZoneClass"))
       #set($zoneObject = $currDoc.getObject("ZoneCode.ZoneClass"))
-      #set($link = $currDoc.getValue('link', $zoneObject))
+      #if(!(${currDoc.getValue('link', $zoneObject).contains('http://')} || ${currDoc.getValue('link', $zoneObject).contains('https://')}))
+        #set($link = $xwiki.getURL(${currDoc.getValue('link', $zoneObject)}))
+      #else
+        #set($link = $currDoc.getValue('link', $zoneObject))
+      #end
+
       #set($title = $currDoc.getValue('title', $zoneObject))
       #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
         &lt;div class="pull-right buttonwrapper edition-button"&gt;
           #set($currDocInlineURL = $currDoc.getURL("inline"))
           &lt;a href="$!{currDocInlineURL}" class="button" title="$services.localization.render('Zone.edit.button')"&gt;
-	    &lt;span class="glyphicon glyphicon-pencil"&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
-	  &lt;/a&gt;
+            &lt;span class="glyphicon glyphicon-pencil"&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
+	         &lt;/a&gt;
         &lt;/div&gt;
       #end
       #if("$!title"!="")
@@ -316,9 +322,9 @@
       #end
 	  &lt;div class="clearfix"&gt;&lt;/div&gt;
       &lt;div class="zone-container"&gt;
-{{/html}}##comment to eliminate unwanted break
-  $currDoc.display('content', 'view',$zoneObject)##comment to eliminate unwanted break
-{{html clean="false"}}
+        {{/html}}##comment to eliminate unwanted break
+          $currDoc.display('content', 'view',$zoneObject)##comment to eliminate unwanted break
+        {{html clean="false"}}
       &lt;/div&gt;
       #if("$!link"!="")
 	  &lt;div class="clearfix"&gt;&lt;/div&gt;
@@ -327,8 +333,11 @@
       &lt;/div&gt;  
       #end
     #else
-      #set($discard = $currDoc.newObject("ZoneCode.ZoneClass"))
-      #set($discard = $currDoc.setContent(""))
+      #set($discard = $currDoc.newObject('ZoneCode.ZoneClass'))
+      #set($object = $currDoc.getObject('ZoneCode.ZoneClass'))
+      #set($discard = $object.set('title', $currDoc.getTitle()))
+      #set($discard = $object.set('content', $currDoc.getContent()))
+      #set($discard = $currDoc.setContent(''))
       #set($discard = $currDoc.save())
     #end
   &lt;/div&gt;
@@ -355,13 +364,17 @@
       <name>Zone macro</name>
     </property>
     <property>
-      <supportsInlineMode/>
+      <supportsInlineMode>1</supportsInlineMode>
     </property>
     <property>
       <visibility>Current Wiki</visibility>
     </property>
   </object>
   <object>
+    <name>ZoneCode.ZoneMacro</name>
+    <number>0</number>
+    <className>XWiki.WikiMacroParameterClass</className>
+    <guid>046a5f9b-b1de-449b-a6b4-eb14b7d83c39</guid>
     <class>
       <name>XWiki.WikiMacroParameterClass</name>
       <customClass/>
@@ -410,10 +423,6 @@
         <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
       </name>
     </class>
-    <name>ZoneCode.ZoneMacro</name>
-    <number>0</number>
-    <className>XWiki.WikiMacroParameterClass</className>
-    <guid>046a5f9b-b1de-449b-a6b4-eb14b7d83c39</guid>
     <property>
       <defaultValue/>
     </property>
@@ -427,5 +436,4 @@
       <name>document</name>
     </property>
   </object>
-  <content/>
 </xwikidoc>
