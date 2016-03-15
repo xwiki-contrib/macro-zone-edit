@@ -302,12 +302,12 @@
     #set($currDoc = $xwiki.getDocument("$!docToDisplay"))
     #if($currDoc.getObject("ZoneCode.ZoneClass"))
       #set($zoneObject = $currDoc.getObject("ZoneCode.ZoneClass"))
-      #if(!(${currDoc.getValue('link', $zoneObject).contains('http://')} || ${currDoc.getValue('link', $zoneObject).contains('https://')}))
-        #set($link = $xwiki.getURL(${currDoc.getValue('link', $zoneObject)}))
+      #set($linkValue = ${currDoc.getValue('link', $zoneObject)})
+      #if(!(${linkValue.contains('http://')} || ${linkValue.contains('https://')}) &amp;&amp; ("$!{linkValue}" != ''))
+        #set($link = $!{xwiki.getURL($linkValue)})
       #else
-        #set($link = $currDoc.getValue('link', $zoneObject))
+        #set($link = $!{linkValue})
       #end
-
       #set($title = $currDoc.getValue('title', $zoneObject))
       #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
         &lt;div class="pull-right buttonwrapper edition-button"&gt;
