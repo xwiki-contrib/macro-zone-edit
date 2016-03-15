@@ -143,14 +143,14 @@
   top: 0;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.5s, opacity 0.5s linear;
-  padding: 6px 8px;
+  transition: visibility 0.3s, opacity 0.3s linear;
+  padding: 3px 3px;
   background: rgb(255, 255, 255);
   border-radius: 0 0 0 5px;
-  -moz-order-radius: 0 0 0 5px;
-  -webkit-order-radius: 0 0 0 5px;
-  -ms-order-radius: 0 0 0 5px;
-  -o-order-radius: 0 0 0 5px;
+  -moz-border-radius: 0 0 0 5px;
+  -webkit-border-radius: 0 0 0 5px;
+  -ms-border-radius: 0 0 0 5px;
+  -o-border-radius: 0 0 0 5px;
 }
 .section_container.editable:hover .edition-button {
   visibility: visible;
@@ -165,12 +165,19 @@
   -ms-transition:0.5s;
   position: relative;
   padding: 1px;
+  min-height: 90px;
+  padding-bottom: 35px;
 }
 .section_container.editable:hover {
   border: 2px dashed #999;
 }
 .section_container img {
   max-width: 100%;
+}
+.section_container.editable .readMore {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
 }
 /* Style for Colibri Theme */
 .pull-right {
@@ -342,7 +349,7 @@
       &lt;/div&gt;
       #if("$!link"!="")
 	  &lt;div class="clearfix"&gt;&lt;/div&gt;
-      &lt;div class="text-right"&gt;
+      &lt;div class="text-right readMore"&gt;
         &lt;div class="buttonwrapper"&gt;&lt;a class="button secondary" href="$!{link}" &gt; $services.localization.render('Zone.readmore') &lt;/a&gt; &lt;/div&gt;          
       &lt;/div&gt;  
       #end
