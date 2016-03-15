@@ -136,34 +136,45 @@
       <cache>long</cache>
     </property>
     <property>
-      <code>/* Style for Colibri Theme */
-.pull-right {
-  float: right;
-}
-.section_container .edition-button {
+      <code>/* Style Zone macro */
+.section_container.editable .edition-button {
+  position: absolute;
+  right: 0;
+  top: 0;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.5s, opacity 0.5s linear;
-  margin-top: 8px;
+  padding: 6px 8px;
+  background: rgb(255, 255, 255);
+  border-radius: 0 0 0 5px;
+  -moz-order-radius: 0 0 0 5px;
+  -webkit-order-radius: 0 0 0 5px;
+  -ms-order-radius: 0 0 0 5px;
+  -o-order-radius: 0 0 0 5px;
 }
-.section_container:hover .edition-button {
+.section_container.editable:hover .edition-button {
   visibility: visible;
   opacity: 1;
 }
-.section_container {
-  border: 1px dashed transparent;
-  padding: 0 5px;
+.section_container.editable{
+  border: 2px dashed transparent;
   transition:0.5s;
-  -webkit-
+  -webkit-transition:0.5s;
   -moz-transition:0.5s;
   -o-transition:0.5s;
   -ms-transition:0.5s;
+  position: relative;
+  padding: 1px;
 }
-.section_container:hover {
-  border: 1px dashed #999;
+.section_container.editable:hover {
+  border: 2px dashed #999;
 }
 .section_container img {
   max-width: 100%;
+}
+/* Style for Colibri Theme */
+.pull-right {
+  float: right;
 }</code>
     </property>
     <property>
@@ -297,8 +308,11 @@
       <code>{{velocity}}
 {{html clean="false"}}
 #set($docToDisplay = "$!xcontext.macro.params.document")
+#if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
+  #set($editZone = "editable")
+#end 
 #if("$!docToDisplay"!="" &amp;&amp; $xwiki.exists("$!docToDisplay"))
-  &lt;div class="section_container"&gt;
+  &lt;div class="section_container $editZone"&gt;
     #set($currDoc = $xwiki.getDocument("$!docToDisplay"))
     #if($currDoc.getObject("ZoneCode.ZoneClass"))
       #set($zoneObject = $currDoc.getObject("ZoneCode.ZoneClass"))
@@ -319,8 +333,8 @@
       #end
       #if("$!title"!="")
         &lt;h2&gt;$!title&lt;/h2&gt;
+	    &lt;div class="clearfix"&gt;&lt;/div&gt;
       #end
-	  &lt;div class="clearfix"&gt;&lt;/div&gt;
       &lt;div class="zone-container"&gt;
         {{/html}}##comment to eliminate unwanted break
           $currDoc.display('content', 'view',$zoneObject)##comment to eliminate unwanted break
