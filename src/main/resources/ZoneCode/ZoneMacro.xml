@@ -316,13 +316,13 @@
 {{html clean="false"}}
 #set($docToDisplay = "$!xcontext.macro.params.document")
 #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
-  #set($editZone = "editable")
+  #set($editZone = 'editable')
 #end 
-#if("$!docToDisplay"!="" &amp;&amp; $xwiki.exists("$!docToDisplay"))
-  &lt;div class="section_container $editZone"&gt;
+#if("$!docToDisplay"!='' &amp;&amp; $xwiki.exists("$!docToDisplay"))
+  &lt;div class="section_container $!{editZone}"&gt;
     #set($currDoc = $xwiki.getDocument("$!docToDisplay"))
-    #if($currDoc.getObject("ZoneCode.ZoneClass"))
-      #set($zoneObject = $currDoc.getObject("ZoneCode.ZoneClass"))
+    #if($currDoc.getObject('ZoneCode.ZoneClass'))
+      #set($zoneObject = $currDoc.getObject('ZoneCode.ZoneClass'))
       #set($linkValue = ${currDoc.getValue('link', $zoneObject)})
       #if(!(${linkValue.contains('http://')} || ${linkValue.contains('https://')}) &amp;&amp; ("$!{linkValue}" != ''))
         #set($link = $!{xwiki.getURL($linkValue)})
@@ -331,26 +331,26 @@
       #end
       #set($title = $currDoc.getValue('title', $zoneObject))
       #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
-        &lt;div class="pull-right buttonwrapper edition-button"&gt;
-          #set($currDocInlineURL = $currDoc.getURL("inline"))
-          &lt;a href="$!{currDocInlineURL}" class="button" title="$services.localization.render('Zone.edit.button')"&gt;
-            &lt;span class="glyphicon glyphicon-pencil"&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
-	         &lt;/a&gt;
+        &lt;div class='pull-right buttonwrapper edition-button'&gt;
+          #set($currDocInlineURL = $currDoc.getURL('inline'))
+          &lt;a href="$!{currDocInlineURL}" class='button' title="$services.localization.render('Zone.edit.button')"&gt;
+            &lt;span class='glyphicon glyphicon-pencil'&gt;&lt;/span&gt;   $services.localization.render('Zone.edit.button')
+	        &lt;/a&gt;
         &lt;/div&gt;
       #end
-      #if("$!title"!="")
+      #if("$!title"!='')
         &lt;h2&gt;$!title&lt;/h2&gt;
-	    &lt;div class="clearfix"&gt;&lt;/div&gt;
+            &lt;div class='clearfix'&gt;&lt;/div&gt;
       #end
-      &lt;div class="zone-container"&gt;
+      &lt;div class='zone-container'&gt;
         {{/html}}##comment to eliminate unwanted break
           $currDoc.display('content', 'view',$zoneObject)##comment to eliminate unwanted break
         {{html clean="false"}}
       &lt;/div&gt;
-      #if("$!link"!="")
-	  &lt;div class="clearfix"&gt;&lt;/div&gt;
-      &lt;div class="text-right readMore"&gt;
-        &lt;div class="buttonwrapper"&gt;&lt;a class="button secondary" href="$!{link}" &gt; $services.localization.render('Zone.readmore') &lt;/a&gt; &lt;/div&gt;          
+      #if("$!link"!='')
+	  &lt;div class='clearfix'&gt;&lt;/div&gt;
+      &lt;div class='text-right readMore'&gt;
+        &lt;div class='buttonwrapper'&gt;&lt;a class='button secondary' href="$!{link}"&gt;$services.localization.render('Zone.readmore')&lt;/a&gt;&lt;/div&gt;          
       &lt;/div&gt;  
       #end
     #else
