@@ -136,34 +136,52 @@
       <cache>long</cache>
     </property>
     <property>
-      <code>/* Style for Colibri Theme */
-.pull-right {
-  float: right;
-}
-.section_container .edition-button {
+      <code>/* Style Zone macro */
+.section_container.editable .edition-button {
+  position: absolute;
+  right: 0;
+  top: 0;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.5s, opacity 0.5s linear;
-  margin-top: 8px;
+  transition: visibility 0.3s, opacity 0.3s linear;
+  padding: 3px 3px;
+  background: rgb(255, 255, 255);
+  border-radius: 0 0 0 5px;
+  -moz-border-radius: 0 0 0 5px;
+  -webkit-border-radius: 0 0 0 5px;
+  -ms-border-radius: 0 0 0 5px;
+  -o-border-radius: 0 0 0 5px;
 }
-.section_container:hover .edition-button {
+.section_container.editable:hover .edition-button {
   visibility: visible;
   opacity: 1;
 }
-.section_container {
-  border: 1px dashed transparent;
-  padding: 0 5px;
+.section_container.editable{
+  border: 2px dashed transparent;
   transition:0.5s;
-  -webkit-
+  -webkit-transition:0.5s;
   -moz-transition:0.5s;
   -o-transition:0.5s;
   -ms-transition:0.5s;
+  position: relative;
+  padding: 1px;
+  min-height: 90px;
+  padding-bottom: 35px;
 }
-.section_container:hover {
-  border: 1px dashed #999;
+.section_container.editable:hover {
+  border: 2px dashed #999;
 }
 .section_container img {
   max-width: 100%;
+}
+.section_container.editable .readMore {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
+/* Style for Colibri Theme */
+.pull-right {
+  float: right;
 }</code>
     </property>
     <property>
@@ -297,8 +315,11 @@
       <code>{{velocity}}
 {{html clean="false"}}
 #set($docToDisplay = "$!xcontext.macro.params.document")
+#if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
+  #set($editZone = "editable")
+#end 
 #if("$!docToDisplay"!="" &amp;&amp; $xwiki.exists("$!docToDisplay"))
-  &lt;div class="section_container"&gt;
+  &lt;div class="section_container $editZone"&gt;
     #set($currDoc = $xwiki.getDocument("$!docToDisplay"))
     #if($currDoc.getObject("ZoneCode.ZoneClass"))
       #set($zoneObject = $currDoc.getObject("ZoneCode.ZoneClass"))
@@ -319,8 +340,8 @@
       #end
       #if("$!title"!="")
         &lt;h2&gt;$!title&lt;/h2&gt;
+	    &lt;div class="clearfix"&gt;&lt;/div&gt;
       #end
-	  &lt;div class="clearfix"&gt;&lt;/div&gt;
       &lt;div class="zone-container"&gt;
         {{/html}}##comment to eliminate unwanted break
           $currDoc.display('content', 'view',$zoneObject)##comment to eliminate unwanted break
@@ -328,7 +349,7 @@
       &lt;/div&gt;
       #if("$!link"!="")
 	  &lt;div class="clearfix"&gt;&lt;/div&gt;
-      &lt;div class="text-right"&gt;
+      &lt;div class="text-right readMore"&gt;
         &lt;div class="buttonwrapper"&gt;&lt;a class="button secondary" href="$!{link}" &gt; $services.localization.render('Zone.readmore') &lt;/a&gt; &lt;/div&gt;          
       &lt;/div&gt;  
       #end
