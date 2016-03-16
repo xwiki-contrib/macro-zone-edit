@@ -165,8 +165,7 @@
   -ms-transition:0.5s;
   position: relative;
   padding: 1px;
-  min-height: 90px;
-  padding-bottom: 35px;
+  min-height: 50px;
 }
 .section_container.editable:hover {
   border: 2px dashed #999;
@@ -174,7 +173,10 @@
 .section_container img {
   max-width: 100%;
 }
-.section_container.editable .readMore {
+.section_container.editable .readMore{
+  margin-top: 50px;
+}
+.section_container.editable .readMore .button {
   position: absolute;
   bottom: 3px;
   right: 3px;
