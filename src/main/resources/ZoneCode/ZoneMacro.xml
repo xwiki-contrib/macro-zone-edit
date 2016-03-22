@@ -331,7 +331,7 @@
       #else
         #set($link = $!{linkValue})
       #end
-      #set($title = $currDoc.getValue('title', $zoneObject))
+      #set($title = $currDoc.getTitle())
       #if($xwiki.hasAccessLevel('edit', $xcontext.user, $docToDisplay))
         &lt;div class='pull-right buttonwrapper edition-button'&gt;
           #set($currDocInlineURL = $currDoc.getURL('inline'))
@@ -346,7 +346,7 @@
       #end
       &lt;div class='zone-container'&gt;
         {{/html}}##comment to eliminate unwanted break
-          $currDoc.display('content', 'view',$zoneObject)##comment to eliminate unwanted break
+          $currDoc.getContent()##comment to eliminate unwanted break
         {{html clean="false"}}
       &lt;/div&gt;
       #if("$!link"!='')

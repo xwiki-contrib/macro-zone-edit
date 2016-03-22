@@ -51,21 +51,6 @@
     <defaultWeb/>
     <nameField/>
     <validationScript/>
-    <content>
-      <customDisplay/>
-      <disabled>0</disabled>
-      <editor>Wysiwyg</editor>
-      <name>content</name>
-      <number>2</number>
-      <picker>0</picker>
-      <prettyName>Content</prettyName>
-      <rows>20</rows>
-      <size>40</size>
-      <unmodifiable>0</unmodifiable>
-      <validationMessage/>
-      <validationRegExp/>
-      <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
-    </content>
     <link>
       <customDisplay/>
       <disabled>0</disabled>
@@ -79,19 +64,6 @@
       <validationRegExp/>
       <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
     </link>
-    <title>
-      <customDisplay/>
-      <disabled>0</disabled>
-      <name>title</name>
-      <number>1</number>
-      <picker>0</picker>
-      <prettyName>title</prettyName>
-      <size>80</size>
-      <unmodifiable>0</unmodifiable>
-      <validationMessage/>
-      <validationRegExp/>
-      <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-    </title>
   </class>
   <object>
     <class>
