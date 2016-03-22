@@ -48,5 +48,5 @@ Zone.readmore=Lire la suite
 Zone.sheet.title=Titre :
 Zone.sheet.content=Contenu :
 Zone.sheet.link=Lien :
-rendering.macro.zone.description=Nom du document à afficher (ex: "espace.page")</content>
+rendering.macro.zone.description=Macro pour afficher le contenu d'un document passé en paramètre</content>
 </xwikidoc>

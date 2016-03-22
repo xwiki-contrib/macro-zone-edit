@@ -450,7 +450,7 @@
       <defaultValue/>
     </property>
     <property>
-      <description/>
+      <description>Document fullName to display (ex: space.document)</description>
     </property>
     <property>
       <mandatory>1</mandatory>
@@ -513,10 +513,10 @@
       </name>
     </class>
     <property>
-      <defaultValue/>
+      <defaultValue>false</defaultValue>
     </property>
     <property>
-      <description/>
+      <description>Parameter to show the title or not (true / false), default is false</description>
     </property>
     <property>
       <mandatory>0</mandatory>

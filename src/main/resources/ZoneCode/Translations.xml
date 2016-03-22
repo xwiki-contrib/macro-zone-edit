@@ -83,5 +83,5 @@ Zone.readmore=Read more
 Zone.sheet.title=Title :
 Zone.sheet.content=Content :
 Zone.sheet.link=Link :
-rendering.macro.zone.description=Document fullName to display (ex: space.document)</content>
+rendering.macro.zone.description=Macro to display content from a document passed as parameter</content>
 </xwikidoc>
