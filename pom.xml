@@ -32,7 +32,7 @@
   <groupId>org.xwiki.contrib.zoneedit</groupId>
   <artifactId>zoneedit-macro</artifactId>
   <name>Zone Edit Macro</name>
-  <version>1.4</version>
+  <version>1.5-SNAPSHOT</version>
   <packaging>xar</packaging>
   <description>Creates an editable zone into your page.</description>
   <properties>
@@ -44,7 +44,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/macro-zone-edit.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/macro-zone-edit.git</developerConnection>
     <url>https://github.com/xwiki-contrib/macro-zone-edit.git</url>
-    <tag>zoneedit-macro-1.4</tag>
+    <tag>HEAD</tag>
   </scm>
   <developers>
     <developer>
