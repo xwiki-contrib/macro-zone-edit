@@ -345,8 +345,10 @@
             &lt;div class='clearfix'&gt;&lt;/div&gt;
       #end
       &lt;div class='zone-container'&gt;
-        {{/html}}
-          $currDoc.getContent()##comment to eliminate unwanted break
+        {{/html}}##comment to eliminate unwanted break
+        {{context document="$currDoc.fullName"}}
+          $currDoc.getContent()
+        {{/context}}##comment to eliminate unwanted break
         {{html clean="false"}}
       &lt;/div&gt;
       #if("$!link"!='')
